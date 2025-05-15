@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "rgs_state" {
 resource "azurerm_storage_account" "states" {
   for_each = azurerm_resource_group.rgs_state
 
-  name                     = "staztflab${each.key}state"
+  name                     = substr("staztflab${each.key}state", 0, 24)
   resource_group_name      = each.value.name
   location                 = var.location
   account_tier             = "Standard"
